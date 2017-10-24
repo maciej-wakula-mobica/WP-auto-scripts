@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Based on https://wptechinnovation.github.io/wpw-doc-dev/nodejs/"
-typeset root="${HOME}/wpw/js/"
+typeset root="${HOME}/wpw/test/js/"
 mkdir -p "${root}"
 
 set -e
@@ -51,4 +51,7 @@ sleep 3  # Wait a moment so that producer would start
 node example-consumer.js &
 pid_c=$!
 sleep 10
-kill -9 $pid_p $pid_c
+echo "Assuming the payent should be already made - killing producer ($pid_p) and consumer ($pid_c)"
+( kill -9 $pid_p $pid_c )
+rm -rf "${root}"
+exit 0
