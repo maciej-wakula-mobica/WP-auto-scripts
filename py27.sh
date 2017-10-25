@@ -6,11 +6,18 @@ echo "Might work incorrectly on windows - as it is one of a kind operating syste
 typeset root="${HOME}/wpw/test/py27/"
 
 # Startup {{{
+	rm -rf "${root}"
 	mkdir -p "${root}"
+
+	echo "Trying to kill any RPC agents that might be running... although there should be none"
+	# There is a known issue with old version of python where rpc-agent could stay running
+	# New version of rpc-agent should have watchdog and close itself
+	killall -r 'rpc-agent-(linux|windows|darwin)-(386|amd64|arm32|arm64)(\.exe)?'
 
 	function msg {
 		echo " _$(printf "%${#1}.${#1}s" ""|tr " " "_")_" ; echo "[ ${1} ]"
 	}
+
 	set -e
 	set -u
 
@@ -59,7 +66,7 @@ echo "| RPC-Agents |"
 echo "'------------'"
 # {{{
 	#ls -l library/iot-core-component/bin
-	echo "unset WPW_HOME (${WPW_HOME:=unset})"
+	echo "unset WPW_HOME (was ${WPW_HOME:=unset})"
 	unset WPW_HOME
 # }}}
 
@@ -103,5 +110,11 @@ echo "'=================='"
 # }}}
 
 #rm -rf "${root}"
+# Cleanup {{{
+	echo "Trying to kill any RPC agents that might be running... although there should be none"
+	# There is a known issue with old version of python where rpc-agent could stay running
+	# New version of rpc-agent should have watchdog and close itself
+	killall -r 'rpc-agent-(linux|windows|darwin)-(386|amd64|arm32|arm64)(\.exe)?'
+# }}}
 exit 0
 # vim:fdm=marker foldmarker={{{,}}}
