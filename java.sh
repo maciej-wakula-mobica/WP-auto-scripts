@@ -4,6 +4,7 @@ echo "Based on https://docs.google.com/document/d/1hKeqNgBa9YSgaGGF1eqHO0Q1uTBmd
 echo "Might work incorrectly on windows - as it is one of a kind operating system... sorry for that"
 
 typeset root="${HOME}/wpw/test/java/"
+typeset runpath="${PWD}"
 
 # Startup {{{
 	rm -rf "${root}"
@@ -61,6 +62,8 @@ echo "'------------------'"
 	. "${runpath}/replace-API-keys.sh"
 	find "${root}" -type f --name '*.java' -exec sed -i.bak "s/${DUMMY_SKEYS}/${SKEY}/g" {} \;
 	find "${root}" -type f --name '*.java' -exec sed -i.bak "s/${DUMMY_CKEYS}/${CKEY}/g" {} \;
+	find "${root}" -type f --name '*.json' -exec sed -i.bak "s/${DUMMY_SKEYS}/${SKEY}/g" {} \;
+	find "${root}" -type f --name '*.json' -exec sed -i.bak "s/${DUMMY_CKEYS}/${CKEY}/g" {} \;
 # }}}
 
 echo ".------------."

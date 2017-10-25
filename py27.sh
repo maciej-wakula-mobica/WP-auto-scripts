@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Based on https://wptechinnovation.github.io/wpw-doc-dev/python27://docs.google.com/document/d/1KeJabrh_0iBuePrJNwN-0Pmp2WaPwkMMHhp_I30fXHg/edit?ts=59ef4030#heading=h.s670rsui5exn"
+echo "Based on https://docs.google.com/document/d/1KeJabrh_0iBuePrJNwN-0Pmp2WaPwkMMHhp_I30fXHg/edit?ts=59ef4030#heading=h.s670rsui5exn"
 echo "Might work incorrectly on windows - as it is one of a kind operating system... sorry for that"
 
 typeset root="${HOME}/wpw/test/py27/"
@@ -51,6 +51,8 @@ echo "'------------------'"
 	. "${runpath}/replace-API-keys.sh"
 	find "${root}" -type f --name '*.py' -exec sed -i.bak "s/${DUMMY_SKEYS}/${SKEY}/g" {} \;
 	find "${root}" -type f --name '*.py' -exec sed -i.bak "s/${DUMMY_CKEYS}/${CKEY}/g" {} \;
+	find "${root}" -type f --name '*.json' -exec sed -i.bak "s/${DUMMY_SKEYS}/${SKEY}/g" {} \;
+	find "${root}" -type f --name '*.json' -exec sed -i.bak "s/${DUMMY_CKEYS}/${CKEY}/g" {} \;
 # }}}
 
 echo ".=============."

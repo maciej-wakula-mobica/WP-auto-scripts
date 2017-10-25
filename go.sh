@@ -4,6 +4,7 @@ echo "Based on https://docs.google.com/document/d/10itB0dALYlKUtYrwCfi4V8nH4yC_t
 echo "Might work incorrectly on windows - as it is one of a kind operating system... sorry for that"
 
 typeset root="${HOME}/wpw/test/go/"
+typeset runpath="${PWD}"
 
 # Startup {{{
 	rm -rf "${root}"
@@ -58,6 +59,8 @@ echo "'------------------'"
 	. "${runpath}/replace-API-keys.sh"
 	find "${root}" -type f --name '*.go' -exec sed -i.bak "s/${DUMMY_SKEYS}/${SKEY}/g" {} \;
 	find "${root}" -type f --name '*.go' -exec sed -i.bak "s/${DUMMY_CKEYS}/${CKEY}/g" {} \;
+	find "${root}" -type f --name '*.json' -exec sed -i.bak "s/${DUMMY_SKEYS}/${SKEY}/g" {} \;
+	find "${root}" -type f --name '*.json' -exec sed -i.bak "s/${DUMMY_CKEYS}/${CKEY}/g" {} \;
 # }}}
 
 echo ".------------."
