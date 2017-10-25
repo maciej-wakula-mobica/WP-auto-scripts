@@ -57,10 +57,10 @@ echo "| API keys replace |"
 echo "'------------------'"
 # {{{
 	. "${runpath}/replace-API-keys.sh"
-	find "${root}" -type f -name '*.go' -exec sed -E -e -i.bak "s/${DUMMY_SKEYS}/${SKEY}/g" {} \;
-	find "${root}" -type f -name '*.go' -exec sed -E -e -i.bak "s/${DUMMY_CKEYS}/${CKEY}/g" {} \;
-	find "${root}" -type f -name '*.json' -exec sed -E -e -i.bak "s/${DUMMY_SKEYS}/${SKEY}/g" {} \;
-	find "${root}" -type f -name '*.json' -exec sed -E -e -i.bak "s/${DUMMY_CKEYS}/${CKEY}/g" {} \;
+	find "${root}" -type f -name '*.go' -exec sed -i.bak -E -e "s/${DUMMY_SKEYS}/${SKEY}/g" {} \;
+	find "${root}" -type f -name '*.go' -exec sed -i.bak -E -e "s/${DUMMY_CKEYS}/${CKEY}/g" {} \;
+	find "${root}" -type f -name '*.json' -exec sed -i.bak -E -e "s/${DUMMY_SKEYS}/${SKEY}/g" {} \;
+	find "${root}" -type f -name '*.json' -exec sed -i.bak -E -e "s/${DUMMY_CKEYS}/${CKEY}/g" {} \;
 # }}}
 
 echo ".------------."
