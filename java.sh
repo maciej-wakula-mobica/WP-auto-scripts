@@ -23,16 +23,15 @@ typeset root="${HOME}/wpw/test/java/"
 	echo "JAVA Development Kit version..."
 	java -version
 	[[ $? -ne 0 ]] && {
-		echo "JAVA error - was tested with JDK 1.8">&2
+		echo "JAVA error - was tested with JDK 1.8 on 2017-10-25">&2
 		exit 2
 	}
 	echo "Apache Maven version"
 	mvn --version
 	[[ $? -ne 0 ]] && {
-		echo "Maven error">&2
+		echo "Maven error - was tested with 3.0.5 and 3.5.2 on 2017-10-25">&2
 		exit 2
 	}
-
 
 	cd "${root}"
 	rm -rf ./*
