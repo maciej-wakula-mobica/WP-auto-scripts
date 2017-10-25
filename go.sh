@@ -51,6 +51,15 @@ echo "'============='"
 	go get github.com/WPTechInnovation/wpw-sdk-go/...
 } # }}}
 
+echo ".------------------."
+echo "| API keys replace |"
+echo "'------------------'"
+# {{{
+	. "${runpath}/replace-API-keys.sh"
+	find "${root}" -type f --name '*.go' -exec sed -i.bak "s/${DUMMY_SKEYS}/${SKEY}/g" {} \;
+	find "${root}" -type f --name '*.go' -exec sed -i.bak "s/${DUMMY_CKEYS}/${CKEY}/g" {} \;
+# }}}
+
 echo ".------------."
 echo "| RPC-Agents |"
 echo "'------------'"

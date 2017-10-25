@@ -25,7 +25,15 @@ easy_install3 --version
 	exit 2
 }
 echo "Create an account with Worldpay Online.... cannot automatically test"
-echo "Not checking the API keys"
+
+echo ".------------------."
+echo "| API keys replace |"
+echo "'------------------'"
+# {{{
+	. "${runpath}/replace-API-keys.sh"
+	find "${root}" -type f --name '*.py' -exec sed -i.bak "s/${DUMMY_SKEYS}/${SKEY}/g" {} \;
+	find "${root}" -type f --name '*.py' -exec sed -i.bak "s/${DUMMY_CKEYS}/${CKEY}/g" {} \;
+# }}}
 
 echo ".=============."
 echo "| Get started |"
@@ -68,3 +76,4 @@ echo "Assuming the payent should be already made - killing producer ($pid_p) and
 
 rm -rf "${root}"
 exit 0
+# vim:fdm=marker foldmarker={{{,}}}:

@@ -4,6 +4,7 @@ echo "Based on https://wptechinnovation.github.io/wpw-doc-dev/python27://docs.go
 echo "Might work incorrectly on windows - as it is one of a kind operating system... sorry for that"
 
 typeset root="${HOME}/wpw/test/py27/"
+typeset runpath="${PWD}"
 
 # Startup {{{
 	rm -rf "${root}"
@@ -41,7 +42,15 @@ echo "'==============='"
 		exit 2
 	}
 	echo "Create an account with Worldpay Online.... cannot automatically test"
-	echo "Not checking the API keys"
+# }}}
+
+echo ".------------------."
+echo "| API keys replace |"
+echo "'------------------'"
+# {{{
+	. "${runpath}/replace-API-keys.sh"
+	find "${root}" -type f --name '*.py' -exec sed -i.bak "s/${DUMMY_SKEYS}/${SKEY}/g" {} \;
+	find "${root}" -type f --name '*.py' -exec sed -i.bak "s/${DUMMY_CKEYS}/${CKEY}/g" {} \;
 # }}}
 
 echo ".=============."
