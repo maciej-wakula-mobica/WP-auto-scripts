@@ -49,10 +49,10 @@ echo "| API keys replace |"
 echo "'------------------'"
 # {{{
 	. "${runpath}/replace-API-keys.sh"
-	find "${root}" -type f --name '*.py' -exec sed -i.bak "s/${DUMMY_SKEYS}/${SKEY}/g" {} \;
-	find "${root}" -type f --name '*.py' -exec sed -i.bak "s/${DUMMY_CKEYS}/${CKEY}/g" {} \;
-	find "${root}" -type f --name '*.json' -exec sed -i.bak "s/${DUMMY_SKEYS}/${SKEY}/g" {} \;
-	find "${root}" -type f --name '*.json' -exec sed -i.bak "s/${DUMMY_CKEYS}/${CKEY}/g" {} \;
+	find "${root}" -type f -name '*.py' -exec sed -i.bak "s/${DUMMY_SKEYS}/${SKEY}/g" {} \;
+	find "${root}" -type f -name '*.py' -exec sed -i.bak "s/${DUMMY_CKEYS}/${CKEY}/g" {} \;
+	find "${root}" -type f -name '*.json' -exec sed -i.bak "s/${DUMMY_SKEYS}/${SKEY}/g" {} \;
+	find "${root}" -type f -name '*.json' -exec sed -i.bak "s/${DUMMY_CKEYS}/${CKEY}/g" {} \;
 # }}}
 
 echo ".=============."
