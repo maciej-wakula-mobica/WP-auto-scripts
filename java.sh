@@ -12,7 +12,7 @@ typeset root="${HOME}/wpw/test/java/"
 	echo "Trying to kill any RPC agents that might be running... although there should be none"
 	# There is a known issue with old version of python where rpc-agent could stay running
 	# New version of rpc-agent should have watchdog and close itself
-	kill $(ps -o pid,command|grep -E 'rpc-agent-(linux|windows|darwin)-(386|amd64|arm32|arm64)(\.exe)?'|cut -d' ' -f 1)
+	for pid in $(ps -o pid,command|grep -E 'rpc-agent-(linux|windows|darwin)-(386|amd64|arm32|arm64)(\.exe)?'|grep -v "${!}"|cut -d' ' -f 1) ; do kill $pid ; done
 
 	function msg {
 		echo " _$(printf "%${#1}.${#1}s" ""|tr " " "_")_" ; echo "[ ${1} ]"
@@ -105,7 +105,7 @@ echo "'=================='"
 	echo "Trying to kill any RPC agents that might be running... although there should be none"
 	# There is a known issue with old version of python where rpc-agent could stay running
 	# New version of rpc-agent should have watchdog and close itself
-	kill $(ps -o pid,command|grep -E 'rpc-agent-(linux|windows|darwin)-(386|amd64|arm32|arm64)(\.exe)?'|cut -d' ' -f 1)
+	for pid in $(ps -o pid,command|grep -E 'rpc-agent-(linux|windows|darwin)-(386|amd64|arm32|arm64)(\.exe)?'|grep -v "${!}"|cut -d' ' -f 1) ; do kill $pid ; done
 # }}}
 exit 0
 # vim:fdm=marker foldmarker={{{,}}}
