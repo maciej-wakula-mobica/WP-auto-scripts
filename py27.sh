@@ -59,7 +59,7 @@ echo "'============='"
 
 	msg "sudo python setup.py install"
 	sudo python setup.py install
-	sudo chown `id -u` -R "${root}"
+	sudo chown -R `id -u` "${root}"
 # }}}
 
 echo ".------------."
