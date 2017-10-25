@@ -2,6 +2,7 @@
 
 echo "Based on https://wptechinnovation.github.io/wpw-doc-dev/nodejs/"
 typeset root="${HOME}/wpw/test/java/"
+rm -rf "${root}"
 mkdir -p "${root}"
 
 set -e
@@ -43,13 +44,19 @@ echo "| Run the examples |"
 echo "'=================='"
 typeset pid_p
 typeset pid_c
-#java --jar &
-#pid_p=$!
-#sleep 3  # Wait a moment so that producer would start
-#java --jar &
-#pid_c=$!
-#sleep 20
-#echo "Assuming the payent should be already made - killing producer ($pid_p) and consumer ($pid_c)"
-#( kill -9 $pid_p $pid_c )
+
+#${root}/wpw-sdk-java/sample-consumer/target/sample-consumer-v0.7-alpha.jar
+#${root}/wpw-sdk-java/sample-producer/target/sample-producer-v0.7-alpha.jar
+#${root}/wpw-sdk-java/sample-producer-callbacks/target/sample-producer-callbacks-v0.7-alpha.jar
+#${root}/wpw-sdk-java/car-charger/target/car-charger-v0.7-alpha.jar
+#${root}/wpw-sdk-java/car-example/target/car-example-v0.7-alpha.jar
+java -jar ${root}/wpw-sdk-java/sample-producer/target/sample-producer-v0.7-alpha.jar &
+pid_p=$!
+sleep 3  # Wait a moment so that producer would start
+java -jar ${root}/wpw-sdk-java/sample-consumer/target/sample-consumer-v0.7-alpha.jar &
+pid_c=$!
+sleep 20
+echo "Assuming the payent should be already made - killing producer ($pid_p) and consumer ($pid_c)"
+( kill -9 $pid_p $pid_c )
 #rm -rf "${root}"
 exit 0
