@@ -107,7 +107,7 @@ echo "'===================='"
 		./sample-consumer &
 		pid_c=$!
 	}
-	sleep 20
+	sleep 40  # On go samples for some reason timeout is set to 20s
 	echo "Assuming the payent should be already made - killing producer ($pid_p) and consumer ($pid_c)"
 	( kill -9 $pid_p $pid_c )
 # }}}
