@@ -1,10 +1,30 @@
 #!/bin/bash
 
 echo "Based on https://docs.google.com/document/d/10itB0dALYlKUtYrwCfi4V8nH4yC_tzTablFBmGJn0dE/edit?ts=59ef12a3#"
-echo "Might work incorrectly on windows - as it is one of a kind operating system... sorry for that"
+echo "Tested on linux, mac and windows (+e)"
+# On windows:
+# - ps works differently so rpc-agent killing won't work
+# - kill most likely won't work
+# so on windows run `./go.sh +e`
 
 typeset root="${HOME}/wpw/test/go/"
 typeset runpath="${PWD}"
+
+# CLI {{{
+typeset SETX='set +x'
+typeset SETU='set -u'
+typeset SETE='set -e'
+while [[ $# -gt 0 ]] ; do
+	case "${1}" in
+		+e)	SETE='set +e' ;;
+		-e)	SETE='set -e' ;;
+		+x)	SETX='set +x' ;;
+		-x)	SETX='set -x' ;;
+		*);;
+	esac
+	shift 1
+done
+# }}}
 
 # Startup {{{
 	rm -rf "${root}"
@@ -18,8 +38,9 @@ typeset runpath="${PWD}"
 	function msg {
 		echo " _$(printf "%${#1}.${#1}s" ""|tr " " "_")_" ; echo "[ ${1} ]"
 	}
-	set -e
-	set -u
+	${SETE}
+	${SETU}
+	${SETX}
 
 	echo "GO version..."
 	go version
